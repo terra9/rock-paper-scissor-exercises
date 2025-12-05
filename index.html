@@ -30,44 +30,70 @@
 
         function playRound (humanChoice = humanSelection, computerChoice = computerSelection) {
             let isSame = humanChoice == computerChoice;
-            console.log(humanChoice);
-            console.log(computerChoice);
+            let scoreInc = 0;
+
+            console.log("Your choice : " + humanChoice);
+            console.log("CPU choice : " + computerChoice);
 
             switch (isSame) {
                 case true:
-                    alert("you tied!");
+                    console.log("you tied!");
+                    return scoreInc;
                 default:
                     if (humanChoice == "rock" && computerChoice == "paper") {
-                        alert("you lose! paper beats rock");
-                        computerScore += 1;
+                        console.log("you lose! paper beats rock");
+                        return scoreInc = -1;
                     } else if (humanChoice == "rock" && computerChoice == "scissor") {
-                        alert("you win! rock beats scissor");
-                        humanScore += 1;
+                        console.log("you win! rock beats scissor");
+                        return scoreInc = 1;
                     } else if (humanChoice == "paper" && computerChoice == "rock") {
-                        alert("you win! paper beats rock!");
-                        humanScore += 1;
+                        console.log("you win! paper beats rock!");
+                        return scoreInc = 1;
                     } else if (humanChoice == "paper" && computerChoice == "scissor") {
-                        alert("you lose! scissor beats paper");
-                        computerScore += 1;
+                        console.log("you lose! scissor beats paper");
+                        return scoreInc = -1;
                     } else if (humanChoice == "scissor" && computerChoice == "paper") {
-                        alert("you win! scissor beats paper");
-                        humanScore += 1;
+                        console.log("you win! scissor beats paper");
+                        return scoreInc = 1
                     } else if (humanChoice == "scissor" && computerChoice == "rock") {
-                        alert("you lose! rock beats scissor");
-                        computerScore += 1;
+                        console.log("you lose! rock beats scissor");
+                        return scoreInc = -1
                     }
             }
-
-            return isSame;
         }
         
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
+        function playGame () {
+            let humanScore = 0;
+            let computerScore = 0;
 
-        let humanScore = 0;
-        let computerScore = 0;
+            for (let i = 0; i < 5; i++) {;
+                console.log("Round " + (i+1));
 
-        playRound(humanSelection, computerSelection);
+                let humanSelection = getHumanChoice();
+                let computerSelection = getComputerChoice();
+
+                let increment = playRound(humanSelection, computerSelection);
+
+                if (increment == 1) {
+                    humanScore += increment;
+                } else {
+                    computerScore += (increment * -1);
+                };
+            }
+
+            console.log("Your final score = " + humanScore);
+            console.log("CPU final score = " + computerScore);
+
+            if (humanScore > computerScore) {
+                console.log("You win!")
+            } else if (humanScore < computerScore) {
+                console.log("You lose!")
+            } else {
+                console.log("You're tied to your opponent!")
+            }
+        }
+
+        
 
 
     </script>
